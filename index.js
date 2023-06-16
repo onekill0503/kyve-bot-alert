@@ -5,8 +5,8 @@ import fetch from "./src/fetch.js";
 config();
 // telegram user Id to send notification
 const NotifTo = process.env.USER_NOTIF;
-// timer 1 hour at interval
-const time = 5000;
+// timer 1 hour at interval in milliseconds
+const time = 3600000;
 
 if(NotifTo){
     // create notification

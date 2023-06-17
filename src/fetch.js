@@ -15,5 +15,10 @@ export default {
         const localCurrentBlock = await axios.get(`${process.env.LOCAL_RPC_URL}/block`).then(res => res.data.result.block.header.height).catch(err => -1);
         if(isNaN(parseInt(localCurrentBlock))) return -1;
         return parseInt(localCurrentBlock);
+    },
+    localNodeStatus: async () => {
+        if(!process.env.LOCAL_RPC_URL) return false;
+        const localCurrentBlock = await axios.get(`${process.env.LOCAL_RPC_URL}/block`).then(res => !(isNaN(res.data.result.block.header.height))).catch(err => false);
+        return localCurrentBlock;
     }
 };

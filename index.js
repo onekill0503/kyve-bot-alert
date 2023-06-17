@@ -17,9 +17,17 @@ if(NotifTo){
             telegram.client.sendMessage(NotifTo , `❌ Failed get current block`);
             return;
         };
-        console.log(`Kyve Block : ${kyveBlock}\tLocal Block : ${localBlock}`)
+        console.log(`✅ Kyve Block : ${kyveBlock}\t✅ Local Block : ${localBlock}`)
         telegram.client.sendMessage(NotifTo , `✅ Current GAP from local node with kyve node is ${kyveBlock - localBlock} Blocks`)
     } , time);
+    setInterval(async () => {;
+        const localNodeStatus = await fetch.localNodeStatus();
+        if(!localNodeStatus) {
+            telegram.client.sendMessage(NotifTo ,`❌ Local Node is Offline`)
+            return;
+        };
+        console.log(`✅ Node Online`);
+    } , 60000);
 }
 
 telegram.bot.launch();

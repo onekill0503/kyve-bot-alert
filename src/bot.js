@@ -11,8 +11,16 @@ bot.command(`gap`, async ctx => {
         ctx.reply(`❌ Failed get current block`)
         return;
     };
-    console.log(`Kyve Block : ${kyveBlock}\tLocal Block : ${localBlock}`)
+    console.log(`✅ Kyve Block : ${kyveBlock}\t✅ Local Block : ${localBlock}`)
     ctx.reply(`✅ Current GAP from local node with kyve node is ${kyveBlock - localBlock} Blocks`);
+})
+bot.command(`status` , async ctx => {
+    const localNodeStatus = await fetch.localNodeStatus();
+    if(!localNodeStatus) {
+        ctx.reply(`❌ Local Node is Offline`)
+        return;
+    };
+    ctx.reply(`✅ Node Online`);
 })
 
 export default {
